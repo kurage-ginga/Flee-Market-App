@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 use App\Models\Category;
 use Illuminate\Database\Seeder;
+use Faker\Factory as Faker;
 
 class CategorySeeder extends Seeder
 {
@@ -15,15 +16,20 @@ class CategorySeeder extends Seeder
     public function run()
     {
         $categories = [
-            '家電',
             'ファッション',
-            '食品',
-            'ガジェット',
-            '日用品',
-            '本・CD',
-            '美容',
+            '家電',
+            'インテリア',
+            'レディース',
+            'メンズ',
+            'コスメ',
+            '本',
+            'ゲーム',
             'スポーツ',
-            'その他',
+            'キッチン',
+            'ハンドメイド',
+            'アクセサリー',
+            'おもちゃ',
+            'ベビー・キッズ',
         ];
 
         foreach ($categories as $name) {

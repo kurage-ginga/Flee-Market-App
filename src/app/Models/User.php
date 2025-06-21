@@ -41,4 +41,14 @@ class User extends Authenticatable implements MustVerifyEmail
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function profile()
+    {
+        return $this->hasOne(\App\Models\UserProfile::class);
+    }
+
+    public function favorites()
+    {
+        return $this->belongsToMany(Item::class, 'favorites')->withTimestamps();
+    }
 }

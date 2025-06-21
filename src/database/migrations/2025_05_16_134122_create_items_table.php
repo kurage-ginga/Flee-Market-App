@@ -11,12 +11,11 @@ class CreateItemsTable extends Migration
         Schema::create('items', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id')->constrained()->onDelete('cascade');
-            $table->foreignId('category_id')->constrained();
             $table->string('name');
             $table->string('brand')->nullable();
             $table->text('description');
             $table->unsignedBigInteger('price');
-            $table->string('condition');
+            $table->string('status');
             $table->timestamps();
         });
     }

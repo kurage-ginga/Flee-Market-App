@@ -34,8 +34,18 @@ class Item extends Model
         return $this->hasOne(Purchase::class);
     }
 
-    public function category()
+    public function categories()
     {
-        return $this->belongsTo(Category::class);
+        return $this->belongsToMany(Category::class);
+    }
+
+    public function Condition()
+    {
+        return $this->belongsTo(Condition::class);
+    }
+
+    public function favoritedBy()
+    {
+        return $this->belongsToMany(User::class, 'favorites')->withTimestamps();
     }
 }

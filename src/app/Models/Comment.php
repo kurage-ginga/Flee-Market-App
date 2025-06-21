@@ -18,4 +18,6 @@ class Comment extends Model
     {
         return $this->belongsTo(Item::class);
     }
+
+    protected $fillable = ['user_id', 'content'];
 }
