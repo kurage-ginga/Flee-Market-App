@@ -11,8 +11,8 @@
         <div class="form__group">
             <div class="form__group-content">
                 <div class="form__input--text">
-                    @if (!empty($user->profile->image_path))
-                        <img src="{{ asset('storage/' . $user->profile->image_path) }}" alt="プロフィール画像">
+                    @if (!empty($user->profile->profile_image))
+                        <img src="{{ asset('storage/' . $user->profile->profile_image) }}" alt="プロフィール画像">
                     @else
                         <img src="{{ asset('images/default-profile.png') }}" alt="デフォルト画像">
                     @endif
@@ -92,6 +92,7 @@
 
         <div class="form__button">
             <button class="form__button-submit" type="submit">更新する</button>
+            <a href="{{ route('items.index') }}" class="btn btn-secondary">← 一覧に戻る</a>
         </div>
     </form>
 </div>

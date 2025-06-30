@@ -6,9 +6,11 @@
         <li class="item-list__tab {{ request('tab') !== 'mylist' ? 'is-active' : '' }}">
             <a href="{{ route('items.index', ['tab' => 'all']) }}">おすすめ</a>
         </li>
-        <li class="item-list__tab {{ request('tab') === 'mylist' ? 'is-active' : '' }}">
-            <a href="{{ route('items.index', ['tab' => 'mylist']) }}">マイリスト</a>
-        </li>
+        @auth
+            <li class="item-list__tab {{ request('tab') === 'mylist' ? 'is-active' : '' }}">
+                <a href="{{ route('items.index', ['tab' => 'mylist']) }}">マイリスト</a>
+            </li>
+        @endauth
     </ul>
 </div>
 
@@ -17,8 +19,8 @@
         <div class="item-card">
             <a href="{{ route('items.item', ['id' => $item->id]) }}">
                 <div class="item-card__image">
-                    @if ($item->images->isNotEmpty())
-                        <img src="{{ asset('storage/' . $item->images->first()->image_path) }}" alt="商品画像">
+                    @if ($item->image_path)
+                        <img src="{{ asset('storage/' . $item->image_path) }}" alt="商品画像">
                     @endif
                     @if ($item->status === 1)
                         <div class="item-card__label item-card__label--sold">SOLD</div>

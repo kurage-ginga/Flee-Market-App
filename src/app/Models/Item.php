@@ -9,14 +9,21 @@ class Item extends Model
 {
     use HasFactory;
 
+    protected $fillable = [
+        'user_id',
+        'name',
+        'brand',
+        'description',
+        'price',
+        'status',
+        'image_path',
+        'category_id',
+        'condition_id',
+    ];
+
     public function user()
     {
         return $this->belongsTo(User::class);
-    }
-
-    public function images()
-    {
-        return $this->hasMany(ItemImage::class);
     }
 
     public function favorites()
@@ -29,9 +36,9 @@ class Item extends Model
         return $this->hasMany(Comment::class);
     }
 
-    public function purchase()
+    public function purchasedBy()
     {
-        return $this->hasOne(Purchase::class);
+        return $this->belongsToMany(User::class, 'purchases')->withTimestamps();
     }
 
     public function categories()

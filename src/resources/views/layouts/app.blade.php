@@ -1,42 +1,54 @@
 <!DOCTYPE html>
-<html>
+<html lang="ja">
 <head>
     <meta charset="UTF-8">
-    <title>フリマアプリ</title>
+    <title>@yield('title', 'フリマアプリ')</title>
+    <link rel="stylesheet" href="{{ asset('css/sanitize.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/app.css') }}">
+    @yield('css')
 </head>
+
 <body>
-    <div class="header">
+    <header class="header">
         <div class="header__inner">
-            <h1 class=header__logo>coachtech</h1>
+            <div class="header__logo">
+                <a href="/">
+                    <img src="{{ asset('storage/images/logo.svg') }}" alt="ロゴ">
+                </a>
+            </div>
+
+            <div class="header__search">
+                <form action="{{ route('items.search') }}" method="POST">
+                    @csrf
+                    <input type="text" name="keyword" class="keyword" placeholder="何をお探しですか？" value="{{ old('keyword', $searchKeyword ?? '') }}">
+                    <button type="submit" class="submit-button">検索</button>
+                </form>
+            </div>
+
             <nav class="header__nav">
                 <ul class="header__list">
-                    <form action="/products/search" method="POST">
-                        @csrf
-                        <input type="text" name="keyword" class="keyword" placeholder="何をお探しですか？">
-                        <button type="submit" class="submit-button">検索</button>
-                    </form>
                     @auth
-                    <li class="header-nav__item">
-                        <form action="/logout" method="post">
-                            @csrf
-                            <a class="header-nav__logout" type="submit" href="{{route ('login')}}">ログアウト</a>
-                        </form>
-                    </li>
+                        <li class="header-nav__item">
+                            <form action="{{ route('logout') }}" method="POST">
+                                @csrf
+                                <button type="submit" class="header-nav__logout">ログアウト</button>
+                            </form>
+                        </li>
                     @else
-                        <form action="/login" method="post">
-                            <a class="header-nav__login" type="submit" href="{{route ('login')}}">ログイン</a>
-                        </form>
+                        <li class="header-nav__item">
+                            <a class="header-nav__login" href="{{ route('login') }}">ログイン</a>
+                        </li>
                     @endauth
                     <li class="header-nav__item">
-                        <a class="header-nav__mypage" href="{{route ('auth.mypage')}}">マイページ</a>
+                        <a class="header-nav__mypage" href="{{ route('auth.mypage') }}">マイページ</a>
                     </li>
                     <li class="header-nav__item">
-                        <a href="{{ route('items.sell') }}" class="header-nav__sell">出品</a>
+                        <a class="header-nav__sell" href="{{ route('items.sell') }}">出品</a>
                     </li>
                 </ul>
             </nav>
         </div>
-    </div>
+    </header>
 
     <main>
         @yield('content')

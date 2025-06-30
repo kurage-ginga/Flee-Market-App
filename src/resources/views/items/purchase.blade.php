@@ -5,7 +5,7 @@
 
 <div class="purchase">
     <div class="purchase__header">
-        <img src="{{ asset('storage/' . $item->images->first()->image_path) }}" alt="商品画像" class="purchase__image">
+        <img src="{{ asset('storage/' . $item->image_path) }}" alt="商品画像" class="purchase__image">
         <div class="purchase__info">
             <h2 class="purchase__name">{{ $item->name }}</h2>
             <p class="purchase__price">¥{{ number_format($item->price) }}</p>
@@ -33,10 +33,13 @@
 
         <div class="purchase__summary">
             <p>商品代金：<strong>¥{{ number_format($item->price) }}</strong></p>
-            <p>支払い方法：{{ old('payment_method') }}</p>
+            <p>支払い方法：<span id="selected-method">選択してください</span></p>
         </div>
 
         <button type="submit" id="checkout-button" class="btn btn-primary">購入する</button>
+        <div class="item-detail__section">
+            <a href="{{ route('items.index') }}" class="btn btn-secondary">← 一覧に戻る</a>
+        </div>
     </form>
 
     <script>
@@ -45,6 +48,8 @@
         document.getElementById('payment-form').addEventListener('submit', function(e) {
             e.preventDefault();
 
+            const paymentMethod = document.getElementById('payment_method').value;
+
             fetch("{{ route('purchase.confirm', ['item_id' => $item->id]) }}", {
                 method: "POST",
                 headers: {
@@ -52,7 +57,10 @@
                     "Content-Type": "application/json",
                     "Accept": "application/json"
                 },
-                body: JSON.stringify({})
+
+                body: JSON.stringify({
+                    payment_method: paymentMethod
+                })
             })
             .then(response => response.json())
             .then(session => {
@@ -63,6 +71,11 @@
                     alert(result.error.message);
                 }
             });
+        });
+
+        document.getElementById('payment_method').addEventListener('change', function () {
+            const selected = this.options[this.selectedIndex].text;
+            document.getElementById('selected-method').textContent = selected;
         });
     </script>
 </div>

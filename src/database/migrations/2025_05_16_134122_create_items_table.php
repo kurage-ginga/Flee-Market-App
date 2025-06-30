@@ -16,6 +16,10 @@ class CreateItemsTable extends Migration
             $table->text('description');
             $table->unsignedBigInteger('price');
             $table->string('status');
+            $table->string('image_path')->nullable();
+            $table->foreignId('condition_id')
+                ->constrained()
+                ->after('user_id');
             $table->timestamps();
         });
     }

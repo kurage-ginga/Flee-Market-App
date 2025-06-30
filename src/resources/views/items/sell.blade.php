@@ -9,7 +9,7 @@
 
         <div>
             <label>商品画像</label>
-            <input type="file" name="images[]" multiple accept="image/*">
+            <input type="file" name="images_path" multiple accept="image/*">
         </div>
 
         <div>
@@ -56,6 +56,7 @@
 
         <div>
             <button type="submit">出品する</button>
+            <a href="{{ route('items.index') }}" class="btn btn-secondary">← 一覧に戻る</a>
         </div>
     </form>
 </div>

@@ -9,18 +9,19 @@ class UserProfile extends Model
 {
     use HasFactory;
 
-        protected $fillable = [
+    protected $fillable = [
         'user_id',
         'zipcode',
         'address',
         'building',
+        'profile_image',
     ];
 
     public function insertUserProfile($userId, $userName, $zipcode, $address, $building)
     {
         return $this->create([
             'user_id' => $userId,
-            'username' => $usename,
+            'username' => $userName,
             'zipcode' => $zipcode,
             'address' => $address,
             'building' => $building,

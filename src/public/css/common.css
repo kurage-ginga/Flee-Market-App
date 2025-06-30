@@ -1,0 +1,96 @@
+
+/* 共通スタイル */
+body {
+  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  color: #fff;
+  margin: 0;
+  padding: 0;
+}
+
+.container {
+  max-width: 500px;
+  margin: 60px auto;
+  color: #333;
+  padding: 40px;
+  border-radius: 8px;
+}
+
+h1 {
+  text-align: center;
+  margin-bottom: 30px;
+  font-size: 24px;
+  color: #111;
+}
+
+label {
+  display: block;
+  margin-top: 20px;
+  font-weight: bold;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="password"],
+textarea {
+  width: 100%;
+  padding: 10px;
+  margin-top: 6px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+button,
+input[type="submit"] {
+  display: block;
+  width: 100%;
+  padding: 12px;
+  margin-top: 30px;
+  background-color: #ff6b6b;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  font-weight: bold;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+button:hover,
+input[type="submit"]:hover {
+  background-color: #ff4c4c;
+}
+
+.profile-image {
+  display: block;
+  width: 100px;
+  height: 100px;
+  margin: 0 auto 20px;
+  border-radius: 50%;
+  background-color: #ccc;
+  object-fit: cover;
+}
+
+/* メール認証誘導画面 */
+.verification-box {
+  text-align: center;
+  padding: 60px;
+  background-color: #fff;
+  color: #111;
+  border-radius: 8px;
+}
+
+.verification-box button {
+  margin-top: 20px;
+}
+
+/* リンク */
+a {
+  display: block;
+  text-align: center;
+  margin-top: 10px;
+  color: #ff6b6b;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
